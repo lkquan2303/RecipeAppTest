@@ -75,7 +75,7 @@ extension RecipeHomeViewController: NewRecipeViewControllerDelegate{
 
 
 // New Recipe Setup View
-extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
+extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func setupUI(){
         if let recipe = recipeDetails{
         navigationBar.isHidden = true
@@ -102,5 +102,16 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         newRecipeType.text = recipeType[row]
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
+            newRecipeImg.image = image
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

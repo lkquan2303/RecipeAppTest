@@ -21,16 +21,21 @@ class NewRecipeViewController: UIViewController{
         deleteRecipe()
     }
     
-
     @IBAction func recipeSave(_ sender: Any) {
         saveRecipe()
     }
     @IBAction func recipeChangePhoto(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet var recipePickerView: UIPickerView!
     @IBOutlet weak var newRecipeImg: UIImageView!
@@ -38,6 +43,10 @@ class NewRecipeViewController: UIViewController{
     @IBOutlet weak var newRecipeIngredients: UITextView!
     @IBOutlet weak var newRecipeSteps: UITextView!
     @IBOutlet weak var newRecipeName: UITextField!
+    
+    var documentsUrl: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
     
     var recipeService: RecipeService!
     var recipeDetails: RecipeModel?
@@ -50,6 +59,7 @@ class NewRecipeViewController: UIViewController{
         setupUI()
         
     }
+    
     
     //Edit Recipe
     func saveRecipe(){
