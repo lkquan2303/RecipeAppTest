@@ -51,7 +51,7 @@ extension RecipeHomeViewController: UITextFieldDelegate{
     }
 }
 
-//Extension Tableview
+//Setup Tableview
 extension RecipeHomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeList.count
@@ -78,6 +78,7 @@ extension RecipeHomeViewController: NewRecipeViewControllerDelegate{
 extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     func setupUI(){
         if let recipe = recipeDetails{
+        navigationBar.isHidden = true
         newRecipeName.text = recipe.name
         newRecipeType.text = recipe.type
         newRecipeIngredients.text = recipe.ingredients
@@ -92,14 +93,14 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return recipeList.count
+        return recipeType.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return recipeList[row].name
+        return recipeType[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        newRecipeType.text = recipeList[row].name
+        newRecipeType.text = recipeType[row]
     }
 }

@@ -31,7 +31,7 @@ class RecipeService{
         }
         return recipes
     }
-    
+
     func addRecipe(_ recipe: RecipeModel) {
         try? realmManager.create(RecipeModel.self, completion: { newRecipe in
             newRecipe.name        = recipe.name
@@ -41,9 +41,6 @@ class RecipeService{
         })
     }
     
-    func updateRecipe(_ recipe: RecipeModel) {
-        //--//
-    }
     
     //Load data from XML file
     private func loadRecipesFromBundle() {

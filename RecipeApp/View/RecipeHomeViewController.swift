@@ -8,12 +8,13 @@
 import UIKit
 
 class RecipeHomeViewController: UIViewController {
-
-    @IBAction func recipeFilter(_ sender: Any) {
-    }
-    @IBOutlet weak var recipeTextField: UITextField!
+    
     @IBOutlet var recipeCategoryPicker: UIPickerView!
     @IBOutlet weak var recipeTableview: UITableView!
+    @IBAction func recipeFilter(_ sender: Any) {
+        recipeFilter()
+    }
+    @IBOutlet weak var recipeTextField: UITextField!
     
     var recipeList: [RecipeModel]!
     var recipeService = RecipeService()
@@ -23,10 +24,13 @@ class RecipeHomeViewController: UIViewController {
         addNewRecipeVC.delegate = self
         addNewRecipeVC.recipeService = recipeService
         if segue.identifier == Strings.navigatorUpdate, let indexPath = recipeTableview.indexPathForSelectedRow{
-            addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             recipeTableview.deselectRow(at: indexPath, animated: true)
-            
+            addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             addNewRecipeVC.recipeList = recipeList
+        }else{
+            for i in 0..<recipeList.count{
+                addNewRecipeVC.recipeType.append(recipeList[i].type)
+            }
         }
     }
     
@@ -42,6 +46,7 @@ class RecipeHomeViewController: UIViewController {
         recipeTableview.tableFooterView = UIView()
         recipeTableview.register(RecipeTableViewCell.self, forCellReuseIdentifier: Strings.cellRecipeID)
         recipeTableview.contentInsetAdjustmentBehavior = .never
+        
     }
 
     func recipeFilter(){

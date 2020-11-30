@@ -134,6 +134,7 @@
 		16D66BBB2574A36000222E1C /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				16D66BFF2574A46300222E1C /* Extension */,
 				16D66C192574A49900222E1C /* Components */,
 				16D66C0F2574A48D00222E1C /* ViewModel */,
 				16D66C0B2574A48900222E1C /* Model */,
@@ -142,7 +143,6 @@
 				16D66C022574A47B00222E1C /* Helper */,
 				16D66C012574A47500222E1C /* Main */,
 				16D66C002574A46B00222E1C /* Constaints */,
-				16D66BFF2574A46300222E1C /* Extension */,
 				16D66BFD2574A45500222E1C /* Resource */,
 				16D66BC72574A36300222E1C /* LaunchScreen.storyboard */,
 				16D66BCA2574A36300222E1C /* Info.plist */,
@@ -223,8 +223,8 @@
 		16D66C042574A48500222E1C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				16034ECC2574AA3B00E85600 /* NewRecipeViewController.swift */,
 				16D66BC02574A36000222E1C /* RecipeHomeViewController.swift */,
+				16034ECC2574AA3B00E85600 /* NewRecipeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
