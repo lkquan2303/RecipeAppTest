@@ -27,10 +27,9 @@ class RecipeHomeViewController: UIViewController {
             recipeTableview.deselectRow(at: indexPath, animated: true)
             addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             addNewRecipeVC.recipeList = recipeList
+            getTypeRecipe(viewController: addNewRecipeVC)
         }else{
-            for i in 0..<recipeList.count{
-                addNewRecipeVC.recipeType.append(recipeList[i].type)
-            }
+            getTypeRecipe(viewController: addNewRecipeVC)
         }
     }
     
@@ -54,6 +53,12 @@ class RecipeHomeViewController: UIViewController {
         recipeList = recipeService.fetchRecipes(of: type)
         recipeTableview.reloadData()
         recipeTextField.resignFirstResponder()
+    }
+    
+    func getTypeRecipe(viewController: NewRecipeViewController){
+        for i in 0..<recipeList.count{
+            viewController.recipeType.append(recipeList[i].type)
+        }
     }
 }
 
