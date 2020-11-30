@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipes>
     <recipe>
-        <type>BreakFast</type>
-        <name>Mexican Skirt Steak and Avocado Salad</name>
-        <ingredients>In most developed countries, the law requires that ingredients be listed according to their relative weight[1] in the product. If an ingredient itself consists of more than one ingredient (such as the cookie pieces which are a part of "cookies and cream" flavor ice cream), then that ingredient is listed by what percentage of the total product it occupies, with its own ingredients displayed next to it in brackets.
+        <type>Vegetarian</type>
+        <name>Coffee Cake</name>
+        <ingredients>Pizza Dough: Makes enough dough for two 10-12 inch pizzas
+            1 1/2 cups (355 ml) warm water (105°F-115°F)
+            1 package (2 1/4 teaspoons) of active dry yeast
+            3 3/4 cups (490 g) bread flour
+            2 tablespoons extra virgin olive oil (omit if cooking pizza in a wood-fired pizza oven)
+            2 teaspoons salt
+            1 teaspoon sugar
         </ingredients>
-        <steps>Nearly everyone has been told that eating better is the first step for maintaining healthy cholesterol levels. We've made this easy with just two servings of Step One Foods a day - as a substitute for your usual breakfast and snack. That’s it! No other dietary changes or daily workouts required.
+        <steps>When it comes to writing a menu, word choice is very important. The words you use to describe food on your menu could entice customers and increase sales if you choose them well, but they could also turn customers off or confuse them if you’re not careful. Below, we break down the key components to menu writing and offer a list of descriptive words for food to get you started.
         </steps>
-        <image_url>https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mexican-skirt-steak-and-avocado-salad-wdy-0520-1588091591.jpg</image_url>
+        <image_url>https://blogs.biomedcentral.com/on-medicine/wp-content/uploads/sites/6/2019/09/iStock-1131794876.t5d482e40.m800.xtDADj9SvTVFjzuNeGuNUUGY4tm5d6UGU5tkKM0s3iPk-620x342.jpg</image_url>
     </recipe>
     <recipe>
         <type>Vegetarian</type>
-        <name>Green Olive Shrimp Pasta</name>
+        <name>Orange Food</name>
         <ingredients>
-            Spices have always been valued for their ability to add flavour, colour and aroma to dishes, but before the advent of refrigeration they were also an important means of food preservation, and in some cultures their medicinal and antiseptic characteristics are revered. The regional cuisines of India, Thailand, Indonesia and Malaysia rely a great deal on spices. Spice mixes are important in these countries, but will often be in fresh paste form rather than the dried spice mixes found in the UK.
+            Pizza Dough: Makes enough dough for two 10-12 inch pizza
+            1 1/2 cups (355 ml) warm water (105°F-115°F)
+            1 package (2 1/4 teaspoons) of active dry yeast
+            3 3/4 cups (490 g) bread flour
+            2 tablespoons extra virgin olive oil (omit if cooking pizza in a wood-fired pizza oven)
+            2 teaspoons salt
+            1 teaspoon sugar
         </ingredients>
-        <steps>Every serving of Step One Foods contains the precise amounts of fiber, omega-3 fatty acids, plant sterols, and antioxidants extensively documented to help maintain healthy cholesterol levels and cardiovascular health. And we're so confident you will love the taste, all our products come with a 100% money back guarantee.
+        <steps>When it comes to writing a menu, word choice is very important. The words you use to describe food on your menu could entice customers and increase sales if you choose them well, but they could also turn customers off or confuse them if you’re not careful. Below, we break down the key components to menu writing and offer a list of descriptive words for food to get you started.
         </steps>
-        <image_url>https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/green-olive-shrimp-pasta-wdy-0520-1588090240.jpg</image_url>
+        <image_url>https://post.healthline.com/wp-content/uploads/2020/07/pizza-beer-1200x628-facebook-1200x628.jpg</image_url>
     </recipe>
     
     <recipe>
         <type>Fast Food</type>
-        <name>Sandy’s Chocolate Cake</name>
-        <ingredients>Spices have always been valued for their ability to add flavour, colour and aroma to dishes, but before the advent of refrigeration they were also an important means of food preservation, and in some cultures their medicinal and antiseptic characteristics are revered. The regional cuisines of India, Thailand, Indonesia and Malaysia rely a great deal on spices. Spice mixes are important in these countries, but will often be in fresh paste form rather than the dried spice mixes found in the UK.</ingredients>
-        <steps>"I can't believe something so healthy can taste this great! My LDL cholesterol went from 158 to 105. It was so easy!"
+        <name>Water Food</name>
+        <ingredients>
+            Pizza Dough: Makes enough dough for two 10-12 inch pizzas
+            1 1/2 cups (355 ml) warm water (105°F-115°F)
+            1 package (2 1/4 teaspoons) of active dry yeast
+            3 3/4 cups (490 g) bread flour
+            2 tablespoons extra virgin olive oil (omit if cooking pizza in a wood-fired pizza oven)
+            2 teaspoons salt
+            1 teaspoon sugar
+        </ingredients>
+        <steps>When it comes to writing a menu, word choice is very important. The words you use to describe food on your menu could entice customers and increase sales if you choose them well, but they could also turn customers off or confuse them if you’re not careful. Below, we break down the key components to menu writing and offer a list of descriptive words for food to get you started.
         </steps>
-        <image_url>https://www.cookiemadness.net/wp-content/uploads/2018/01/sandyschocolatecake.jpg</image_url>
+        <image_url>https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/140/2020/07/16090452/A659763.jpg</image_url>
     </recipe>
 </recipes>

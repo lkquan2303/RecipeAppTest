@@ -25,11 +25,17 @@ class NewRecipeViewController: UIViewController{
         saveRecipe()
     }
     @IBAction func recipeChangePhoto(_ sender: Any) {
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
+//        let vc = UIImagePickerController()
+//        vc.sourceType = .photoLibrary
+//        vc.delegate = self
+//        vc.allowsEditing = true
+//        present(vc, animated: true, completion: nil)
+        
+        let fileName = "https://www.cookiemadness.net/wp-content/uploads/2018/01/sandyschocolatecake.jpg"
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
+        let image = UIImage(contentsOfFile: path)
+        newRecipeImg.image = image
+        
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -43,10 +49,6 @@ class NewRecipeViewController: UIViewController{
     @IBOutlet weak var newRecipeIngredients: UITextView!
     @IBOutlet weak var newRecipeSteps: UITextView!
     @IBOutlet weak var newRecipeName: UITextField!
-    
-    var documentsUrl: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
     
     var recipeService: RecipeService!
     var recipeDetails: RecipeModel?
