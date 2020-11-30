@@ -7,8 +7,35 @@
 
 import Foundation
 import SWXMLHash
+import RxSwift
 
-class RecipeService{
+class RecipeService: RecipeServiceProtocol{
+    
+    func fetchRecipeData() -> Observable<[RecipeModel]> {
+        var recipes = [RecipeModel]()
+        let type: String = ""
+        return Observable.create{ [self]observer -> Disposable in
+            if type.isEmpty {
+                if let results = realmManager.fetch(RecipeModel.self) {
+                    recipes = Array(results)
+                    observer.onNext(recipes)
+                    return Disposables.create {
+                    }
+                }
+            } else {
+                if let results = realmManager.fetch(RecipeModel.self, predicate: NSPredicate(format: "type == %@", type)) {
+                    recipes = Array(results)
+                    observer.onNext(recipes)
+                    return Disposables.create {
+                    }
+                }
+            }
+           // return recipes as! Disposable
+           // return Disposable.create{}
+            return Disposables.create {
+            }
+        }
+    }
     
     var realmManager = DatabaseManager.shared
     

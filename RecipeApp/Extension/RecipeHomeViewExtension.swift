@@ -56,7 +56,7 @@ extension RecipeHomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Strings.tableCellId, for: indexPath) as! RecipeTableViewCell
         let recipe = recipeList[indexPath.row]

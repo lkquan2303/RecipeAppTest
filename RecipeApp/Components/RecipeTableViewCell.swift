@@ -14,6 +14,7 @@ class RecipeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+       // recipeName.text = "13"
         // Initialization code
     }
 
