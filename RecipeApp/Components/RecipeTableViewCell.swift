@@ -14,8 +14,6 @@ class RecipeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // recipeName.text = "13"
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,7 +29,23 @@ class RecipeTableViewCell: UITableViewCell {
         {
             let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("\(recipeDetails.imageUrl)")
             let image    = UIImage(contentsOfFile: imageURL.path)
-            recipeImage.image = image
+            DispatchQueue.main.async {
+                self.recipeImage.image = image
+                
+            }
+        }
+    }
+    
+    func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+            print("App already launched : \(isAppAlreadyLaunchedOnce)")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("App launched first time")
+            return false
         }
     }
 }

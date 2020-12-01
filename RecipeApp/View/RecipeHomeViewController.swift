@@ -79,13 +79,5 @@ class RecipeHomeViewController: UIViewController {
         recipeTableview.reloadData()
         recipeTextField.resignFirstResponder()
     }
-    
-    func getTypeRecipe(viewController: NewRecipeViewController = NewRecipeViewController()){
-        for i in 0..<recipeList.count{
-            viewController.recipeType.append(recipeList[i].type)
-        }
-    }
-    
-
 }
 

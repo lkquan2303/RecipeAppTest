@@ -82,7 +82,6 @@ class NewRecipeViewController: UIViewController{
             recipe.steps = newRecipeSteps.text ?? ""
             recipeService.addRecipe(recipe)
             dismiss(animated: true, completion: nil)
-            delegate?.reloadRecipes()
         }else{
             try? recipeService.realmManager.update { [self] in
                 let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -106,7 +105,6 @@ class NewRecipeViewController: UIViewController{
             }
             self.navigationController?.popViewController(animated: true)
         }
-        
         delegate?.reloadRecipes()
         indicatorSuccessingDelay()
     }
@@ -126,5 +124,18 @@ class NewRecipeViewController: UIViewController{
         }
         return false
     }
+    
+    func isAppAlreadyLaunchedOnce()->Bool{
+            let defaults = UserDefaults.standard
+
+            if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnce"){
+                print("App already launched : \(isAppAlreadyLaunchedOnce)")
+                return true
+            }else{
+                defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+                print("App launched first time")
+                return false
+            }
+        }
 }
 

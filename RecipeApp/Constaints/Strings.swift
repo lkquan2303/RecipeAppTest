@@ -14,4 +14,5 @@ struct Strings{
     static var warningRecipe = "Please fill all information"
     static var error = "Error"
     static var okAction = "OK"
+    static var imageTemp = ["food1", "food2", "food3"]
 }
