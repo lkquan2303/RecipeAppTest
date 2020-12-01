@@ -33,8 +33,9 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="28e-PH-X7M">
-                                                                    <rect key="frame" x="20" y="10" width="60" height="40"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="28e-PH-X7M">
+                                                                    <rect key="frame" x="20" y="11" width="60" height="37.5"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="R3g-bX-0Ve"/>
                                                                         <constraint firstAttribute="width" secondItem="28e-PH-X7M" secondAttribute="height" multiplier="9:6" id="fGT-4q-4T2"/>
@@ -173,9 +174,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35r-Bl-ffM">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="827.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EHp-2e-Ald">
-                                                <rect key="frame" x="20" y="20" width="374" height="249.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EHp-2e-Ald">
+                                                <rect key="frame" x="20" y="21" width="374" height="247"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="EHp-2e-Ald" secondAttribute="height" multiplier="9:6" id="vQ4-Ry-ByN"/>
                                                 </constraints>
@@ -255,16 +257,17 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ic-rL-yEu">
-                                                <rect key="frame" x="158" y="272" width="98" height="29"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <rect key="frame" x="144" y="276.5" width="126" height="29"/>
+                                                <color key="backgroundColor" systemColor="systemGray4Color"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="WdJ-f5-6dp"/>
-                                                    <constraint firstAttribute="width" constant="98" id="bDM-hO-ble"/>
+                                                    <constraint firstAttribute="width" constant="126" id="V3Z-rN-7PW"/>
+                                                    <constraint firstAttribute="height" constant="29" id="p56-kb-j9D"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                                <state key="normal" title="Add Photo">
-                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Add Photo" image="pencil" catalog="system">
+                                                    <color key="titleColor" systemColor="tertiarySystemBackgroundColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="recipeChangePhoto:" destination="8j6-c1-dW8" eventType="touchUpInside" id="gOl-xp-B0d"/>
@@ -276,14 +279,14 @@
                                             <constraint firstItem="sCn-7f-yFB" firstAttribute="trailing" secondItem="udP-k1-kcI" secondAttribute="trailing" id="29t-ky-Dwx"/>
                                             <constraint firstAttribute="trailing" secondItem="EHp-2e-Ald" secondAttribute="trailing" constant="20" id="2iX-aI-qAs"/>
                                             <constraint firstItem="zEf-1O-VHf" firstAttribute="leading" secondItem="EHp-2e-Ald" secondAttribute="leading" id="3cF-wE-0Z7"/>
+                                            <constraint firstItem="0Ic-rL-yEu" firstAttribute="centerX" secondItem="zEf-1O-VHf" secondAttribute="centerX" id="6SS-u0-0Ss"/>
                                             <constraint firstItem="zEf-1O-VHf" firstAttribute="top" secondItem="uSc-cx-tLi" secondAttribute="bottom" constant="8" id="8J5-Sl-Wff"/>
                                             <constraint firstItem="udP-k1-kcI" firstAttribute="top" secondItem="fxe-of-c9A" secondAttribute="bottom" constant="8" id="9FD-fp-gGR"/>
-                                            <constraint firstItem="0Ic-rL-yEu" firstAttribute="top" secondItem="EHp-2e-Ald" secondAttribute="bottom" constant="2.5" id="9FG-sw-k5g"/>
-                                            <constraint firstItem="0Ic-rL-yEu" firstAttribute="centerX" secondItem="zEf-1O-VHf" secondAttribute="centerX" id="9HB-De-w5N"/>
                                             <constraint firstItem="iuO-uL-lLA" firstAttribute="trailing" secondItem="zEf-1O-VHf" secondAttribute="trailing" id="B5w-VM-7ce"/>
                                             <constraint firstItem="udP-k1-kcI" firstAttribute="trailing" secondItem="EHp-2e-Ald" secondAttribute="trailing" id="BbQ-oD-jiv"/>
                                             <constraint firstItem="sCn-7f-yFB" firstAttribute="leading" secondItem="udP-k1-kcI" secondAttribute="leading" id="Haz-FN-17c"/>
                                             <constraint firstItem="seX-EC-Nob" firstAttribute="top" secondItem="udP-k1-kcI" secondAttribute="bottom" constant="20" id="Hq5-IV-qmd"/>
+                                            <constraint firstItem="0Ic-rL-yEu" firstAttribute="top" secondItem="EHp-2e-Ald" secondAttribute="bottom" constant="7" id="HzF-fj-lc8"/>
                                             <constraint firstItem="gEW-9e-wOg" firstAttribute="trailing" secondItem="sCn-7f-yFB" secondAttribute="trailing" id="KJR-7w-3Zy"/>
                                             <constraint firstItem="sCn-7f-yFB" firstAttribute="top" secondItem="seX-EC-Nob" secondAttribute="bottom" constant="8" id="Ml2-dl-Aja"/>
                                             <constraint firstItem="uSc-cx-tLi" firstAttribute="leading" secondItem="EHp-2e-Ald" secondAttribute="leading" id="Nvn-6b-fYM"/>
@@ -296,8 +299,11 @@
                                             <constraint firstItem="seX-EC-Nob" firstAttribute="leading" secondItem="udP-k1-kcI" secondAttribute="leading" id="Xxx-bC-eWd"/>
                                             <constraint firstItem="EHp-2e-Ald" firstAttribute="top" secondItem="35r-Bl-ffM" secondAttribute="top" constant="20" id="b55-Cu-tgr"/>
                                             <constraint firstItem="iuO-uL-lLA" firstAttribute="leading" secondItem="zEf-1O-VHf" secondAttribute="leading" id="bCc-1e-VHn"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jgA-mC-alP" secondAttribute="trailing" constant="20" symbolic="YES" id="gMC-68-MmO"/>
                                             <constraint firstItem="gEW-9e-wOg" firstAttribute="top" secondItem="sCn-7f-yFB" secondAttribute="bottom" constant="20" id="lGW-7k-Klb"/>
                                             <constraint firstAttribute="bottom" secondItem="gEW-9e-wOg" secondAttribute="bottom" constant="20" id="pdE-eJ-BfW"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="seX-EC-Nob" secondAttribute="trailing" constant="20" symbolic="YES" id="qVk-Bb-FzM"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fxe-of-c9A" secondAttribute="trailing" constant="20" symbolic="YES" id="qtS-OC-iWM"/>
                                             <constraint firstItem="zEf-1O-VHf" firstAttribute="trailing" secondItem="EHp-2e-Ald" secondAttribute="trailing" id="sfS-Zg-oPX"/>
                                             <constraint firstItem="udP-k1-kcI" firstAttribute="leading" secondItem="EHp-2e-Ald" secondAttribute="leading" id="x1x-EY-dIu"/>
                                             <constraint firstItem="EHp-2e-Ald" firstAttribute="leading" secondItem="35r-Bl-ffM" secondAttribute="leading" constant="20" id="xuV-KV-B5P"/>
@@ -336,6 +342,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageButton" destination="0Ic-rL-yEu" id="WsY-kO-i9p"/>
                         <outlet property="navigationBar" destination="7sK-g9-uTj" id="dTu-x2-kAy"/>
                         <outlet property="newRecipeImg" destination="EHp-2e-Ald" id="oMS-9f-lGb"/>
                         <outlet property="newRecipeIngredients" destination="udP-k1-kcI" id="hKG-YA-egx"/>
@@ -343,6 +350,7 @@
                         <outlet property="newRecipeSteps" destination="sCn-7f-yFB" id="GSH-5s-ND7"/>
                         <outlet property="newRecipeType" destination="iuO-uL-lLA" id="1nT-af-B7P"/>
                         <outlet property="recipePickerView" destination="YOK-oT-Thf" id="Nfe-vc-GjA"/>
+                        <outlet property="recipeSave" destination="7vO-gD-Kcb" id="Nki-kC-eoJ"/>
                         <outlet property="topLayoutConstraint" destination="OFU-n5-rhR" id="h0H-ip-NNz"/>
                     </connections>
                 </viewController>
@@ -363,11 +371,20 @@
         <segue reference="QaW-2m-3cb"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -377,6 +394,9 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

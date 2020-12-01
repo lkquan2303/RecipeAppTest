@@ -13,7 +13,6 @@ import Photos
 import MobileCoreServices
 
 //MARK: HomeScreen Extension
-
 ///Extension Picker
 extension RecipeHomeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     
@@ -91,7 +90,6 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
             newRecipeType.text = recipe.type
             newRecipeIngredients.text = recipe.ingredients
             newRecipeSteps.text = recipe.steps
-            
             let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
             let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
             let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -101,8 +99,9 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
                 let image    = UIImage(contentsOfFile: imageURL.path)
                 newRecipeImg.image = image
             }
+            
+            imageButton.setTitle("Change Photo", for: .normal)
         }
-        
         newRecipeType.inputView = recipePickerView
     }
     
@@ -152,6 +151,7 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
     }
 }
 
+
 //MARK: Indicator View Setup
 extension UIViewController{
     
@@ -171,4 +171,17 @@ extension UIViewController{
             PKHUD.sharedHUD.hide()
         }
     }
+    
+    //MARK: Tap Out Side To Dissmiss
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
+
+

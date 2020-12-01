@@ -34,10 +34,6 @@ class RecipeHomeViewController: UIViewController {
             recipeTableview.deselectRow(at: indexPath, animated: true)
             addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             addNewRecipeVC.recipeList = recipeList
-            getTypeRecipe()
-            print("CEll:::::\(recipeList[indexPath.row].imageUrl)")
-        }else{
-            getTypeRecipe()
         }
     }
     
@@ -50,7 +46,7 @@ class RecipeHomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             PKHUD.sharedHUD.hide()
         }
     }
@@ -68,8 +64,14 @@ class RecipeHomeViewController: UIViewController {
         recipeTableview.register(RecipeTableViewCell.self, forCellReuseIdentifier: Strings.cellRecipeID)
         recipeTableview.contentInsetAdjustmentBehavior = .never
         
+        //Tap Out Side to Hide KeyBoard
+        self.hideKeyboardWhenTappedAround()
+        
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        view.endEditing(true)
+    }
+
     //Button Recipe Filter
     func recipeFilter(){
         let type = recipeTextField.text ?? ""
@@ -83,5 +85,7 @@ class RecipeHomeViewController: UIViewController {
             viewController.recipeType.append(recipeList[i].type)
         }
     }
+    
+
 }
 
