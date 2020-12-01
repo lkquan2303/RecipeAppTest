@@ -23,4 +23,21 @@ class RecipeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func bindData(recipeInfo: RecipeModel) {
+        if recipeInfo.name != nil {
+            recipeName.text = recipeInfo.name
+        }
+        if recipeInfo.imageUrl != nil && !recipeInfo.imageUrl.isEmpty {
+            let imageUrl: URL = URL(fileURLWithPath: recipeInfo.imageUrl)
+            guard FileManager.default.fileExists(atPath: recipeInfo.imageUrl) else {
+                 return // No image found!
+            }
+            if let imageData: Data = try? Data(contentsOf: imageUrl) {
+                recipeImage.image = UIImage(data: imageData)
+            }
+        } else {
+            recipeImage.image = UIImage(named: "default_food_image")
+        }
+    }
 }

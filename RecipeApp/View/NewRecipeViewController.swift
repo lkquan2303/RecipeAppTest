@@ -46,6 +46,9 @@ class NewRecipeViewController: UIViewController{
     var recipeDetails: RecipeModel?
     var recipeList: [RecipeModel]!
     var recipeType:[String] = []
+    var currentUniqueId: Int?
+    var imagePath: String?
+    var imageUrl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +62,23 @@ class NewRecipeViewController: UIViewController{
         indicatorProcessingView()
         if recipeDetails == nil{
             let recipe = RecipeModel()
+            
+            if newRecipeImg.image != nil {
+                let imageName = "\(currentUniqueId! + 1)_\(newRecipeName.text)"
+                imagePath = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(imageName).png"
+                
+                let imageUrl: URL = URL(fileURLWithPath: imagePath!)
+
+                //Store Image
+                try? newRecipeImg.image!.pngData()?.write(to: imageUrl)
+                self.imageUrl = imagePath
+            }
+            
             recipe.name = newRecipeName.text ?? ""
             recipe.type = newRecipeType.text ?? ""
             recipe.ingredients = newRecipeIngredients.text ?? ""
             recipe.steps = newRecipeSteps.text ?? ""
+            recipe.imageUrl = imagePath!
             recipeService.addRecipe(recipe)
             dismiss(animated: true, completion: nil)
             indicatorSuccessingDelay()

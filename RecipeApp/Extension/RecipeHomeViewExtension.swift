@@ -62,10 +62,11 @@ extension RecipeHomeViewController: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Strings.tableCellId, for: indexPath) as! RecipeTableViewCell
-        let recipe = recipeList[indexPath.row]
-        cell.recipeName.text = recipe.name
+       // let recipe = recipeList[indexPath.row]
+    //    cell.recipeName.text = recipe.name
        // cell.recipeImage.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
-        cell.recipeImage.image = load(fileName: recipe.imageUrl)
+    //    cell.recipeImage.image = load(fileName: recipe.imageUrl)
+        cell.bindData(recipeInfo: recipeList[indexPath.row])
         return cell
     }
 }
