@@ -22,6 +22,9 @@ class RecipeTableViewCell: UITableViewCell {
     
     func setUpCellView(recipeDetails: RecipeModel) {
         recipeName.text = recipeDetails.name
+        if isAppAlreadyLaunchedOnce(){
+            recipeImage.sd_setImage(with: URL(string: recipeDetails.imageUrl))
+        }
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
         let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -31,7 +34,6 @@ class RecipeTableViewCell: UITableViewCell {
             let image    = UIImage(contentsOfFile: imageURL.path)
             DispatchQueue.main.async {
                 self.recipeImage.image = image
-                
             }
         }
     }

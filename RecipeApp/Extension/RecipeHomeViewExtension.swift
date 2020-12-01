@@ -55,7 +55,7 @@ extension RecipeHomeViewController: UITextFieldDelegate{
     }
 }
 
-//Setup Tableview
+///Setup Tableview
 extension RecipeHomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeList.count
@@ -143,6 +143,23 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
         imagePicker.dismiss(animated: true, completion: nil)
         if let originalImage = info[.originalImage] as? UIImage {
             newRecipeImg.image = originalImage
+        }
+    }
+    
+    ///Setup Save Image from Local to DB
+    func saveImageLocal(){
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileName = "\(UUID().uuidString)img.jpg"
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        if let data = newRecipeImg.image!.jpegData(compressionQuality:  1.0),
+           !FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                // writes the image data to disk
+                try data.write(to: fileURL)
+                print("Saved Image")
+            } catch {
+                print("Error:", error)
+            }
         }
     }
 }
