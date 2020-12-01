@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SDWebImage
 import PKHUD
+import Photos
+import MobileCoreServices
 
 //MARK: HomeScreen Extension
 
@@ -59,14 +61,14 @@ extension RecipeHomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Strings.tableCellId, for: indexPath) as! RecipeTableViewCell
-       // let recipe = recipeList[indexPath.row]
-    //    cell.recipeName.text = recipe.name
-       // cell.recipeImage.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
-    //    cell.recipeImage.image = load(fileName: recipe.imageUrl)
-        cell.bindData(recipeInfo: recipeList[indexPath.row])
+        // let recipe = recipeList[indexPath.row]
+        //    cell.recipeName.text = recipe.name
+        // cell.recipeImage.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
+        //    cell.recipeImage.image = load(fileName: recipe.imageUrl)
+        cell.setUpCellView(recipeDetails: recipeList[indexPath.row])
         return cell
     }
 }
@@ -83,14 +85,24 @@ extension RecipeHomeViewController: NewRecipeViewControllerDelegate{
 extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func setupUI(){
         if let recipe = recipeDetails{
-        navigationBar.isHidden = true
-        topLayoutConstraint.constant = 8
-        newRecipeName.text = recipe.name
-        newRecipeType.text = recipe.type
-        newRecipeIngredients.text = recipe.ingredients
-        newRecipeSteps.text = recipe.steps
-        newRecipeImg.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
+            navigationBar.isHidden = true
+            topLayoutConstraint.constant = 8
+            newRecipeName.text = recipe.name
+            newRecipeType.text = recipe.type
+            newRecipeIngredients.text = recipe.ingredients
+            newRecipeSteps.text = recipe.steps
+            
+            let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+            let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+            let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+            if let dirPath   = paths.first
+            {
+                let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("\(recipe.imageUrl)")
+                let image    = UIImage(contentsOfFile: imageURL.path)
+                newRecipeImg.image = image
+            }
         }
+        
         newRecipeType.inputView = recipePickerView
     }
     
@@ -113,12 +125,30 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-
+    
+    /// Open Gallery
+    func openGallery() {
+        PHPhotoLibrary.requestAuthorization({ status in
+            DispatchQueue.main.async {
+                if status == .authorized {
+                    self.imagePicker.delegate = self
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                } else {
+                    //Display permission has not granted to open Photos library
+                }
+            }
+        })
+    }
+    
+    /// Image picker controller only for gallery.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
-            newRecipeImg.image = image
+        
+        // Dismiss image picker
+        imagePicker.dismiss(animated: true, completion: nil)
+        if let originalImage = info[.originalImage] as? UIImage {
+            newRecipeImg.image = originalImage
         }
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 

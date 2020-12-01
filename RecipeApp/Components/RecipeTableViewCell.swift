@@ -14,30 +14,25 @@ class RecipeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       // recipeName.text = "13"
+        // recipeName.text = "13"
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    func bindData(recipeInfo: RecipeModel) {
-        if recipeInfo.name != nil {
-            recipeName.text = recipeInfo.name
-        }
-        if recipeInfo.imageUrl != nil && !recipeInfo.imageUrl.isEmpty {
-            let imageUrl: URL = URL(fileURLWithPath: recipeInfo.imageUrl)
-            guard FileManager.default.fileExists(atPath: recipeInfo.imageUrl) else {
-                 return // No image found!
-            }
-            if let imageData: Data = try? Data(contentsOf: imageUrl) {
-                recipeImage.image = UIImage(data: imageData)
-            }
-        } else {
-            recipeImage.image = UIImage(named: "default_food_image")
+    func setUpCellView(recipeDetails: RecipeModel) {
+        recipeName.text = recipeDetails.name
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask    = FileManager.SearchPathDomainMask.userDomainMask
+        let paths               = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath          = paths.first
+        {
+            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("\(recipeDetails.imageUrl)")
+            let image    = UIImage(contentsOfFile: imageURL.path)
+            recipeImage.image = image
         }
     }
 }
+

@@ -22,6 +22,7 @@ class RecipeHomeViewController: UIViewController {
     var recipeList: [RecipeModel]!
     var recipeService = RecipeService()
     var listViewModel: RecipeListViewModel!
+    var autoID: Int = 0
     let disposeBag = DisposeBag()
     
     //Prepare Navigator
@@ -34,6 +35,7 @@ class RecipeHomeViewController: UIViewController {
             addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             addNewRecipeVC.recipeList = recipeList
             getTypeRecipe()
+            print("CEll:::::\(recipeList[indexPath.row].imageUrl)")
         }else{
             getTypeRecipe()
         }
@@ -48,8 +50,7 @@ class RecipeHomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.indicatorSuccessingView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
             PKHUD.sharedHUD.hide()
         }
     }
@@ -82,21 +83,5 @@ class RecipeHomeViewController: UIViewController {
             viewController.recipeType.append(recipeList[i].type)
         }
     }
-    
-    var documentsUrl: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
-    
-    func load(fileName: String) -> UIImage? {
-        let fileURL = documentsUrl.appendingPathComponent(fileName)
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            return UIImage(data: imageData)
-        } catch {
-            print("Error loading image : \(error)")
-        }
-        return nil
-    }
-    
 }
 

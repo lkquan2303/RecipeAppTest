@@ -21,11 +21,13 @@ class NewRecipeViewController: UIViewController{
         saveRecipe()
     }
     @IBAction func recipeChangePhoto(_ sender: Any) {
-        title = "123"
-        let fileName = "https://www.cookiemadness.net/wp-content/uploads/2018/01/sandyschocolatecake.jpg"
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
-        let image = UIImage(contentsOfFile: path)
-        newRecipeImg.image = image
+  
+//        let fileName = "https://www.cookiemadness.net/wp-content/uploads/2018/01/sandyschocolatecake.jpg"
+//        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
+//        let image = UIImage(contentsOfFile: path)
+//        newRecipeImg.image = image
+        
+        openGallery()
         
     }
     
@@ -42,13 +44,11 @@ class NewRecipeViewController: UIViewController{
     @IBOutlet weak var newRecipeSteps: UITextView!
     @IBOutlet weak var newRecipeName: UITextField!
     
+    var imagePicker =  UIImagePickerController()
     var recipeService: RecipeService!
     var recipeDetails: RecipeModel?
     var recipeList: [RecipeModel]!
     var recipeType:[String] = []
-    var currentUniqueId: Int?
-    var imagePath: String?
-    var imageUrl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,31 +59,53 @@ class NewRecipeViewController: UIViewController{
     
     //Edit Recipe
     func saveRecipe(){
-        indicatorProcessingView()
+       // indicatorProcessingView()
         if recipeDetails == nil{
             let recipe = RecipeModel()
             
-            if newRecipeImg.image != nil {
-                let imageName = "\(currentUniqueId! + 1)_\(newRecipeName.text)"
-                imagePath = "\(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])/\(imageName).png"
-                
-                let imageUrl: URL = URL(fileURLWithPath: imagePath!)
-
-                //Store Image
-                try? newRecipeImg.image!.pngData()?.write(to: imageUrl)
-                self.imageUrl = imagePath
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            let fileName = "\(UUID().uuidString)img.jpg"
+            let fileURL = documentsDirectory.appendingPathComponent(fileName)
+            if let data = newRecipeImg.image!.jpegData(compressionQuality:  1.0),
+              !FileManager.default.fileExists(atPath: fileURL.path) {
+                do {
+                    // writes the image data to disk
+                    try data.write(to: fileURL)
+                    print("Saved Image")
+                } catch {
+                    print("Error:", error)
+                }
             }
             
+            recipe.imageUrl = fileName
             recipe.name = newRecipeName.text ?? ""
             recipe.type = newRecipeType.text ?? ""
             recipe.ingredients = newRecipeIngredients.text ?? ""
             recipe.steps = newRecipeSteps.text ?? ""
-            recipe.imageUrl = imagePath!
             recipeService.addRecipe(recipe)
             dismiss(animated: true, completion: nil)
-            indicatorSuccessingDelay()
+            
         }else{
-            try? recipeService.realmManager.update {
+            try? recipeService.realmManager.update { [self] in
+                
+                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                let fileName = "\(UUID().uuidString)img.jpg"
+                let fileURL = documentsDirectory.appendingPathComponent(fileName)
+                if let data = newRecipeImg.image!.jpegData(compressionQuality:  1.0),
+                  !FileManager.default.fileExists(atPath: fileURL.path) {
+                    do {
+                        // writes the image data to disk
+                        try data.write(to: fileURL)
+                        print("\(fileURL)")
+                        print("Saved Image")
+                    } catch {
+                        print("Error:", error)
+                    }
+                }
+                
+                self.recipeDetails?.imageUrl = fileName
                 self.recipeDetails?.name = self.newRecipeName.text ?? ""
                 self.recipeDetails?.type = self.newRecipeType.text ?? ""
                 self.recipeDetails?.ingredients = self.newRecipeIngredients.text ?? ""
@@ -91,11 +113,14 @@ class NewRecipeViewController: UIViewController{
             }
             self.navigationController?.popViewController(animated: true)
         }
+        
         delegate?.reloadRecipes()
+        //indicatorSuccessingDelay()
     }
     
     // Delete Recipe
     func deleteRecipe(){
+        indicatorProcessingView()
         recipeService.realmManager.delete(object: recipeDetails!)
         self.navigationController?.popViewController(animated: true)
         delegate?.reloadRecipes()
