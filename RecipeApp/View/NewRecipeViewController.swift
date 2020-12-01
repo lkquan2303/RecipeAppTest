@@ -9,10 +9,6 @@ import Foundation
 import UIKit
 import SDWebImage
 
-protocol NewRecipeViewControllerDelegate: class {
-    func reloadRecipes()
-}
-
 class NewRecipeViewController: UIViewController{    
     
     weak var delegate: NewRecipeViewControllerDelegate?
@@ -25,12 +21,7 @@ class NewRecipeViewController: UIViewController{
         saveRecipe()
     }
     @IBAction func recipeChangePhoto(_ sender: Any) {
-//        let vc = UIImagePickerController()
-//        vc.sourceType = .photoLibrary
-//        vc.delegate = self
-//        vc.allowsEditing = true
-//        present(vc, animated: true, completion: nil)
-        
+        title = "123"
         let fileName = "https://www.cookiemadness.net/wp-content/uploads/2018/01/sandyschocolatecake.jpg"
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/" + fileName
         let image = UIImage(contentsOfFile: path)
@@ -42,6 +33,7 @@ class NewRecipeViewController: UIViewController{
         dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet weak var topLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet var recipePickerView: UIPickerView!
     @IBOutlet weak var newRecipeImg: UIImageView!
@@ -92,6 +84,5 @@ class NewRecipeViewController: UIViewController{
         self.navigationController?.popViewController(animated: true)
         delegate?.reloadRecipes()
     }
-    
 }
 

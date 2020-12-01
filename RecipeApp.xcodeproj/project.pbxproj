@@ -150,6 +150,9 @@
 		16D66BBB2574A36000222E1C /* RecipeApp */ = {
 			isa = PBXGroup;
 			children = (
+				16D66C012574A47500222E1C /* Main */,
+				16D66C022574A47B00222E1C /* Helper */,
+				16D66C002574A46B00222E1C /* Constaints */,
 				16D66BFD2574A45500222E1C /* Resource */,
 				16034EEF2574D32F00E85600 /* Protocol */,
 				16D66BFF2574A46300222E1C /* Extension */,
@@ -158,10 +161,6 @@
 				16D66C0B2574A48900222E1C /* Model */,
 				16D66C042574A48500222E1C /* View */,
 				16D66C032574A48100222E1C /* App */,
-				16D66C022574A47B00222E1C /* Helper */,
-				16D66C012574A47500222E1C /* Main */,
-				16D66C002574A46B00222E1C /* Constaints */,
-				16D66BC72574A36300222E1C /* LaunchScreen.storyboard */,
 				16D66BCA2574A36300222E1C /* Info.plist */,
 			);
 			path = RecipeApp;
@@ -212,6 +211,7 @@
 		16D66C012574A47500222E1C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				16D66BC72574A36300222E1C /* LaunchScreen.storyboard */,
 				16D66BC22574A36000222E1C /* Main.storyboard */,
 			);
 			path = Main;

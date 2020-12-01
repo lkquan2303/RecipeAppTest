@@ -64,7 +64,8 @@ extension RecipeHomeViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: Strings.tableCellId, for: indexPath) as! RecipeTableViewCell
         let recipe = recipeList[indexPath.row]
         cell.recipeName.text = recipe.name
-        cell.recipeImage.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
+       // cell.recipeImage.sd_setImage(with: URL(string: recipe.imageUrl), completed: nil)
+        cell.recipeImage.image = load(fileName: recipe.imageUrl)
         return cell
     }
 }
@@ -82,6 +83,7 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
     func setupUI(){
         if let recipe = recipeDetails{
         navigationBar.isHidden = true
+        topLayoutConstraint.constant = 8
         newRecipeName.text = recipe.name
         newRecipeType.text = recipe.type
         newRecipeIngredients.text = recipe.ingredients

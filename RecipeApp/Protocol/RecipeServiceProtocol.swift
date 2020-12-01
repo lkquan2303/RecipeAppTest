@@ -11,3 +11,7 @@ import RxSwift
 protocol RecipeServiceProtocol {
     func fetchRecipeData() -> Observable<[RecipeModel]>
 }
+
+protocol NewRecipeViewControllerDelegate: class {
+    func reloadRecipes()
+}

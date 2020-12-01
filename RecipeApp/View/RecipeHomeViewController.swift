@@ -24,6 +24,7 @@ class RecipeHomeViewController: UIViewController {
     var listViewModel: RecipeListViewModel!
     let disposeBag = DisposeBag()
     
+    //Prepare Navigator
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let addNewRecipeVC = segue.destination as! NewRecipeViewController
         addNewRecipeVC.delegate = self
@@ -67,13 +68,13 @@ class RecipeHomeViewController: UIViewController {
         recipeTableview.contentInsetAdjustmentBehavior = .never
         
     }
+    
     //Button Recipe Filter
     func recipeFilter(){
         let type = recipeTextField.text ?? ""
         recipeList = recipeService.fetchRecipes(of: type)
         recipeTableview.reloadData()
         recipeTextField.resignFirstResponder()
-        print("\(listViewModel.fetchRecipeViewModel())")
     }
     
     func getTypeRecipe(viewController: NewRecipeViewController = NewRecipeViewController()){
@@ -81,5 +82,21 @@ class RecipeHomeViewController: UIViewController {
             viewController.recipeType.append(recipeList[i].type)
         }
     }
+    
+    var documentsUrl: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func load(fileName: String) -> UIImage? {
+        let fileURL = documentsUrl.appendingPathComponent(fileName)
+        do {
+            let imageData = try Data(contentsOf: fileURL)
+            return UIImage(data: imageData)
+        } catch {
+            print("Error loading image : \(error)")
+        }
+        return nil
+    }
+    
 }
 
