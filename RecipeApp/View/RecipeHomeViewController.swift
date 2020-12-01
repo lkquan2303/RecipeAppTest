@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import PKHUD
 
 class RecipeHomeViewController: UIViewController {
     
@@ -31,9 +32,9 @@ class RecipeHomeViewController: UIViewController {
             recipeTableview.deselectRow(at: indexPath, animated: true)
             addNewRecipeVC.recipeDetails = recipeList[indexPath.row]
             addNewRecipeVC.recipeList = recipeList
-            getTypeRecipe(viewController: addNewRecipeVC)
+            getTypeRecipe()
         }else{
-            getTypeRecipe(viewController: addNewRecipeVC)
+            getTypeRecipe()
         }
     }
     
@@ -42,6 +43,14 @@ class RecipeHomeViewController: UIViewController {
         let viewController = storyboard.instantiateInitialViewController() as! RecipeHomeViewController
         viewController.listViewModel = viewModel
         return viewController
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.indicatorSuccessingView()
+            PKHUD.sharedHUD.hide()
+        }
     }
     
     override func viewDidLoad() {
@@ -58,9 +67,7 @@ class RecipeHomeViewController: UIViewController {
         recipeTableview.contentInsetAdjustmentBehavior = .never
         
     }
-    
-    
-    
+    //Button Recipe Filter
     func recipeFilter(){
         let type = recipeTextField.text ?? ""
         recipeList = recipeService.fetchRecipes(of: type)
@@ -69,7 +76,7 @@ class RecipeHomeViewController: UIViewController {
         print("\(listViewModel.fetchRecipeViewModel())")
     }
     
-    func getTypeRecipe(viewController: NewRecipeViewController){
+    func getTypeRecipe(viewController: NewRecipeViewController = NewRecipeViewController()){
         for i in 0..<recipeList.count{
             viewController.recipeType.append(recipeList[i].type)
         }

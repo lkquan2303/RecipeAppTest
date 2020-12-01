@@ -8,8 +8,11 @@
 import Foundation
 import UIKit
 import SDWebImage
+import PKHUD
 
-//Extension Picker
+//MARK: HomeScreen Extension
+
+///Extension Picker
 extension RecipeHomeViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -29,7 +32,7 @@ extension RecipeHomeViewController: UIPickerViewDataSource, UIPickerViewDelegate
     }
 }
 
-//Extension Textfield
+///Extension Textfield
 extension RecipeHomeViewController: UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -73,8 +76,8 @@ extension RecipeHomeViewController: NewRecipeViewControllerDelegate{
     }
 }
 
-
-// New Recipe Setup View
+//MARK: New Recipe Screen Extension
+/// New Recipe Setup View
 extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func setupUI(){
         if let recipe = recipeDetails{
@@ -113,5 +116,26 @@ extension NewRecipeViewController: UIPickerViewDataSource, UIPickerViewDelegate,
             newRecipeImg.image = image
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK: Indicator View Setup
+extension UIViewController{
+    
+    func indicatorSuccessingView(){
+        PKHUD.sharedHUD.contentView = PKHUDSuccessView(title: "Success")
+        PKHUD.sharedHUD.show()
+    }
+    
+    func indicatorProcessingView(){
+        PKHUD.sharedHUD.contentView = PKHUDProgressView(title: "Processing")
+        PKHUD.sharedHUD.show()
+    }
+    
+    func indicatorSuccessingDelay(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.indicatorSuccessingView()
+            PKHUD.sharedHUD.hide()
+        }
     }
 }

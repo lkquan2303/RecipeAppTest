@@ -62,9 +62,9 @@ class NewRecipeViewController: UIViewController{
         
     }
     
-    
     //Edit Recipe
     func saveRecipe(){
+        indicatorProcessingView()
         if recipeDetails == nil{
             let recipe = RecipeModel()
             recipe.name = newRecipeName.text ?? ""
@@ -73,6 +73,7 @@ class NewRecipeViewController: UIViewController{
             recipe.steps = newRecipeSteps.text ?? ""
             recipeService.addRecipe(recipe)
             dismiss(animated: true, completion: nil)
+            indicatorSuccessingDelay()
         }else{
             try? recipeService.realmManager.update {
                 self.recipeDetails?.name = self.newRecipeName.text ?? ""
