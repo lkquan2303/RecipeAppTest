@@ -1,0 +1,54 @@
+PODS:
+  - PKHUD (5.2.1)
+  - Realm (10.1.4):
+    - Realm/Headers (= 10.1.4)
+  - Realm/Headers (10.1.4)
+  - RealmSwift (10.1.4):
+    - Realm (= 10.1.4)
+  - RxCocoa (6.0.0-rc.2):
+    - RxRelay (= 6.0.0-rc.2)
+    - RxSwift (= 6.0.0-rc.2)
+  - RxRelay (6.0.0-rc.2):
+    - RxSwift (= 6.0.0-rc.2)
+  - RxSwift (6.0.0-rc.2)
+  - SDWebImage (5.10.0):
+    - SDWebImage/Core (= 5.10.0)
+  - SDWebImage/Core (5.10.0)
+  - SWXMLHash (5.0.1)
+  - TPKeyboardAvoidingSwift (3.2)
+
+DEPENDENCIES:
+  - PKHUD (~> 5.2.1)
+  - RealmSwift
+  - RxCocoa (= 6.0.0-rc.2)
+  - RxSwift (= 6.0.0-rc.2)
+  - SDWebImage (~> 5.0)
+  - SWXMLHash
+  - TPKeyboardAvoidingSwift
+
+SPEC REPOS:
+  trunk:
+    - PKHUD
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SDWebImage
+    - SWXMLHash
+    - TPKeyboardAvoidingSwift
+
+SPEC CHECKSUMS:
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
+  Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
+  RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
+  RxCocoa: 38445a25751be5907f52f7ea02c137f52ce2e7f2
+  RxRelay: b9e2483e83f46e4e7bf1234c6fe418e5c2eaf825
+  RxSwift: ada35be6643bedf6881cdbd6bbfb27aeea527670
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  TPKeyboardAvoidingSwift: ce1a75e0bc3af6b485f8bfa1d0a8320cfc565851
+
+PODFILE CHECKSUM: aad549d477656e69cf92c7aef20cf1454821ebb7
+
+COCOAPODS: 1.10.0
